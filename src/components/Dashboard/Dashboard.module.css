@@ -1,0 +1,51 @@
+.dashboard_page {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard_content {
+    flex: 1 0;
+    background-color: #E3DCEF;
+    padding: 50px 100px;
+}
+
+.dashboard_header {
+    color: #987CC2;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.dashboard_line {
+    width: 100%;
+    border-top: 1px solid black;
+    margin: 10px 0;
+}
+
+.dashboard_projects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.dashboard_project_box {
+    flex: 0 0 32%;
+    cursor: pointer;
+    background-color: #987CC2;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.dashboard_project_box h1 {
+    color: white;
+    font-weight: bolder;
+    font-size: 1.25rem;
+}
+
+.dashboard_project_box p {
+    color: white;
+
+}

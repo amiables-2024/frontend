@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import { redirect } from "react-router-dom";
+import {redirect, useNavigate} from "react-router-dom";
 
 import styles from './SignUp.module.css';
 import logoImg from "../../assets/images/logo_name.svg";
 import restClient from "../../util/rest.util";
 
 export default function SignUp() {
+    const navigate = useNavigate();
+
     const [error, setError] = useState('')
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -26,8 +28,9 @@ export default function SignUp() {
             return
         }
 
-        localStorage.setItem("accessToken", request.data);
-        redirect("/dashboard");
+        localStorage.setItem("accessToken", request.data.token);
+        localStorage.setItem("user", JSON.stringify(request.data.user));
+        navigate("/dashboard");
     };
 
     return (

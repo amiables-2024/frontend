@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import { redirect } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import styles from './SignIn.module.css';
 import logoImg from "../../assets/images/logo_name.svg";
 import restClient from "../../util/rest.util";
 
 const SignIn = () => {
+    const navigate = useNavigate();
+
     const [error, setError] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,9 +25,11 @@ const SignIn = () => {
             setError(request.data)
             return
         }
+        console.log(request);
 
-        localStorage.setItem("accessToken", request.data);
-        redirect("/dashboard");
+        localStorage.setItem("accessToken", request.data.token);
+        localStorage.setItem("user", JSON.stringify(request.data.user));
+        navigate("/dashboard");
     };
 
     return (
