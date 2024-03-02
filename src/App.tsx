@@ -2,14 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import './assets/css/dragula.css'
+
 import { ChakraProvider } from '@chakra-ui/react'
 
 import MeetingRoom from './components/MeetingRoom/MeetingRoom';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import CreateProjectPage from './components/CreateProjectPage/CreateProjectPage';
-import KanbanItem from './components/KanbanItem/KanbanItem';
-import KanbanBoard from './components/KanbanBoard/KanbanBoard';
 import Dashboard from "./components/Dashboard/Dashboard";
 import ChatApp from "./components/ChatApp/ChatApp";
 import ProjectDashboard from './components/ProjectDashboard/ProjectDashboard';
@@ -49,7 +49,6 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/project/:projectId" element={<ProjectDashboard />} />
           <Route path="/new-project" element={<CreateProjectPage />} />
-          <Route path="/kanban-board" element={<KanbanBoard />} />
           <Route path="/chat-app" element={<ChatApp />} />
   {/*        <Route path="/landing" element={
             <ProtectedRoute>

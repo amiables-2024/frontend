@@ -20,6 +20,7 @@
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
+    "react-dragula": "^1.1.17",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
     "socket.io-client": "^4.7.4",

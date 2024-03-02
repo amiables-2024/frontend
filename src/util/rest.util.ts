@@ -101,6 +101,10 @@ export class RestClient {
         } catch (err: any) {
             const error = err as AxiosError;
             if (error.response) {
+                if (error.response.status === 401) {
+                    localStorage.removeItem("accessToken");
+                    localStorage.removeItem("user");
+                }
                 return {success: false, data: (error.response.data as any).data}
             }
             return {success: false, data: error.message};
