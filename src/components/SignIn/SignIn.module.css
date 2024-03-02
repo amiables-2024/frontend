@@ -1,0 +1,78 @@
+.error {
+    color: red;
+}
+
+.sign_in_page {
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #FFFFFF, #987CC2);
+}
+
+.sign_in_container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign_in_box {
+    height: 450px;
+    width: 30%;
+    background: #F9F8FC;
+}
+
+.sign_in_form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 50px;
+}
+
+.sign_in_header {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.form_group {
+    display: block;
+    width: 100%;
+}
+
+.form_group input {
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(227, 220, 239, 0.37);
+    border: 3px solid #E3DCEF;
+    border-radius: 8px;
+}
+
+.form_group input:focus {
+    outline: none !important;
+}
+
+.form_group input::placeholder {
+    color: #B39FD2;
+}
+
+.btn_row {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn_row button {
+    padding: 10px 25px;
+    color: white;
+    background-color: #B39FD2;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+}

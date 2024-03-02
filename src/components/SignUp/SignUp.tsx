@@ -3,24 +3,15 @@ import './Form.css';
 import axios, { AxiosError } from 'axios';
 
 const SignUp = () => {
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, user);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, );
       console.log('SignUp Success:', response.data);
       // TODO: Handle success, set session token and redirect to personal dashboard page
       sessionStorage.setItem("accessToken", response.data.access_token);  
@@ -33,35 +24,37 @@ const SignUp = () => {
         console.error('SignUp Error:', error);
       }
     }
-    console.log(user);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <h2>Sign Up</h2>
-      <input
-        type="text"
-        name="name"
-        placeholder="name"
-        value={user.name}
-        onChange={handleChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={user.email}
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={user.password}
-        onChange={handleChange}
-      />
-      <button type="submit">Sign Up</button>
-    </form>
+      <div>
+          <form onSubmit={handleSubmit} className="form-container">
+              <h2>Sign Up</h2>
+              <input
+                  type="text"
+                  name="name"
+                  placeholder="name"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+              />
+              <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+              />
+              <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+              />
+              <button type="submit">Sign Up</button>
+          </form>
+      </div>
+
   );
 };
 
