@@ -9,6 +9,7 @@ import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import CreateProjectPage from './components/CreateProjectPage/CreateProjectPage';
 import KanbanItem from './components/KanbanItem/KanbanItem';
+import KanbanBoard from './components/KanbanBoard/KanbanBoard';
 
 // function App() {
 //   return (
@@ -38,7 +39,6 @@ import KanbanItem from './components/KanbanItem/KanbanItem';
 function App() {
   return (
     <ChakraProvider>
-      <KanbanItem />
       <Router>
         <Routes>
           <Route path="/sign-up" element={<SignUp />} />
