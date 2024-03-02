@@ -8,8 +8,6 @@ import {Project, Todo, TodoStatusEnum} from "../../util/types";
 import {toast} from "react-toastify";
 import {useParams} from "react-router-dom";
 
-type TodoStatus = 'To Do' | 'In Progress' | 'Done';
-
 type Props = {
     project: Project;
 }
@@ -20,7 +18,7 @@ export default function KanbanTab({project}: Props) {
     const [todos, setTodos] = useState<Todo[]>([])
 
     const [showModal, setShowModal] = useState(false);
-    const [newType, setNewType] = useState<TodoStatus>('To Do')
+    const [newType, setNewType] = useState<TodoStatusEnum>(TodoStatusEnum.PENDING)
 
     const [error, setError] = useState('');
     const [title, setTitle] = useState('');
@@ -46,7 +44,8 @@ export default function KanbanTab({project}: Props) {
         const request = await restClient.post(`/projects/${projectId}/todos`, {
             data: {
                 title: title,
-                description: description
+                description: description,
+                status: newType.toString()
             }
         });
 
@@ -103,7 +102,7 @@ export default function KanbanTab({project}: Props) {
                     <div className={styles.kanban_name}>
                         <h1>To Do</h1>
                         <div onClick={() => {
-                            setNewType('To Do');
+                            setNewType(TodoStatusEnum.PENDING);
                             setShowModal(true)
                         }}>
                             <p>+</p>
@@ -125,7 +124,7 @@ export default function KanbanTab({project}: Props) {
                     <div className={styles.kanban_name}>
                         <h1>In Progress</h1>
                         <div onClick={() => {
-                            setNewType('In Progress');
+                            setNewType(TodoStatusEnum.IN_PROGRESS);
                             setShowModal(true)
                         }}>
                             <p>+</p>
@@ -147,7 +146,7 @@ export default function KanbanTab({project}: Props) {
                     <div className={styles.kanban_name}>
                         <h1>Done</h1>
                         <div onClick={() => {
-                            setNewType('Done');
+                            setNewType(TodoStatusEnum.DONE);
                             setShowModal(true)
                         }}>
                             <p>+</p>

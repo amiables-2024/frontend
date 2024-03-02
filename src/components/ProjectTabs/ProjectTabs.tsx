@@ -40,7 +40,7 @@ export default function ProjectTabs({project}: Props) {
     const getActiveTabComponent = () => {
         switch (selectedTab) {
             case "Files":
-                return <></>
+                return <DriveTab/>
             case "Meeting":
                 return <></>
             case "Project Analysis":

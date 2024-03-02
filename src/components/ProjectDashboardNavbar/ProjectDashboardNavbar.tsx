@@ -1,18 +1,13 @@
 import styles from "./ProjectDashboardNavbar.module.css";
 import logoImg from "../../assets/images/logo_name.svg";
 import {getAvatarUrl} from "../../util/misc.util";
-import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import {Project, User} from "../../util/types";
-import {useState} from "react";
-import Modal from "../Modal/Modal";
-import restClient from "../../util/rest.util";
-
 type Props = {
     project: Project;
 }
 
 export default function ProjectDashboardNavbar({project}: Props) {
-    const navigate = useNavigate();
 
     const cachedUser = localStorage.getItem("user");
     if (cachedUser == null)
@@ -24,7 +19,7 @@ export default function ProjectDashboardNavbar({project}: Props) {
         <>
             <div className={styles.navbar}>
                 <div className={styles.navbar_logo}>
-                    <Link to='/'>
+                    <Link to='/dashboard'>
                         <img src={logoImg} alt={'Sweet Logo'}/>
                     </Link>
                 </div>
