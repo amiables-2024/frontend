@@ -1,68 +1,85 @@
-import React, { useState } from 'react';
-import './Form.css';
-import axios, { AxiosError } from 'axios';
+import React, {useState} from 'react';
+import {redirect, useNavigate} from "react-router-dom";
 
-const SignUp = () => {
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
+import styles from './SignUp.module.css';
+import logoImg from "../../assets/images/logo_name.svg";
+import restClient from "../../util/rest.util";
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
+export default function SignUp() {
+    const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, user);
-      console.log('SignUp Success:', response.data);
-      // TODO: Handle success, set session token and redirect to personal dashboard page
-      sessionStorage.setItem("accessToken", response.data.access_token);  
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('SignUp Error:', error.response?.data);
-        // TODO: Handle error, display some error message detailing what failed
-      } else {
-        // Handle non-Axios errors
-        console.error('SignUp Error:', error);
-      }
-    }
-    console.log(user);
-  };
+    const [error, setError] = useState('')
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-  return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <h2>Sign Up</h2>
-      <input
-        type="text"
-        name="name"
-        placeholder="name"
-        value={user.name}
-        onChange={handleChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={user.email}
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={user.password}
-        onChange={handleChange}
-      />
-      <button type="submit">Sign Up</button>
-    </form>
-  );
-};
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        const request = await restClient.post('/auth/register', {
+            data: {
+                name: name,
+                email: email,
+                password: password
+            }
+        });
 
-export default SignUp;
+        if (!request.success) {
+            setError(request.data)
+            return
+        }
+
+        localStorage.setItem("accessToken", request.data.token);
+        localStorage.setItem("user", JSON.stringify(request.data.user));
+        navigate("/dashboard");
+    };
+
+    return (
+        <div className={styles.sign_in_page}>
+            <div className={styles.sign_in_container}>
+                <div className={styles.sign_up_box}>
+                    <form onSubmit={handleSubmit} className={styles.sign_in_form}>
+                        <a href={'/'}>
+                            <img src={logoImg} alt={"Sweet"}/>
+                        </a>
+                        <h2 className={styles.sign_up_header}>Let’s get you started with Sweet!</h2>
+                        {error && <p className={styles.error}>{error}</p>}
+                        <div className={styles.form_group}>
+                            <input
+                                type="text"
+                                placeholder="Enter your name"
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}
+                            />
+                        </div>
+                        <div className={styles.form_group}>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                            />
+                        </div>
+                        <div className={styles.form_group}>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                            />
+                        </div>
+                        <div className={styles.btn_row}>
+                            <a href='/sign-in'>
+                                <button type="button">Sign In</button>
+                            </a>
+                            <button type="submit">Sign Up</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    );
+}
