@@ -26,7 +26,7 @@ export default function ProjectDashboardNavbar({project}: Props) {
                 <div className={styles.navbar_right}>
                     <div className={styles.project_info}>
                         <h1>{project.name}</h1>
-                        <p>Days till due: 1</p>
+                        <p>Days till due: 13</p>
                     </div>
                     <div className={styles.avatar_group}>
                         <p>{user.name}</p>
