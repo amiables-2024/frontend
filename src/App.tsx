@@ -11,6 +11,7 @@ import CreateProjectPage from './components/CreateProjectPage/CreateProjectPage'
 import KanbanItem from './components/KanbanItem/KanbanItem';
 import KanbanBoard from './components/KanbanBoard/KanbanBoard';
 import Dashboard from "./components/Dashboard/Dashboard";
+import ChatApp from "./components/ChatApp/ChatApp";
 
 // function App() {
 //   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/new-project" element={<CreateProjectPage />} />
           <Route path="/kanban-board" element={<KanbanBoard />} />
+          <Route path="/chat-app" element={<ChatApp />} />
   {/*        <Route path="/landing" element={
             <ProtectedRoute>
               <Landing />
