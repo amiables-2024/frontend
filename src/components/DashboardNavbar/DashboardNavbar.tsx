@@ -13,7 +13,12 @@ export default function DashboardNavbar() {
 
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState('');
+    const [pdfFile, setPdfFile] = useState(null);
+    const [dueDate, setDueDate] = useState('');
+    const [members, setMembers] = useState<number[]>([]);  // Array of member ids
+    const [description, setDescription] = useState('');
     const [name, setName] = useState('');
+    
 
     const cachedUser = localStorage.getItem("user");
     if (cachedUser == null)
@@ -73,8 +78,39 @@ export default function DashboardNavbar() {
                                 onChange={(event) => setName(event.target.value)}
                             />
                         </div>
+                        <div className="form_group">
+                            <label htmlFor="dueDate">Due Date:</label>
+                            <input
+                                type="date"
+                                id="dueDate"
+                                value={dueDate}
+                                onChange={(event) => setDueDate(event.target.value)}
+                            />
+                        </div>
+                        <div className="form_group">
+                            {/* Member invitation section */}
+                            {/* You can implement this part using debouncing for API calls */}
+                        </div>
+                        <div className="form_group">
+                            <label htmlFor="description">Description:</label>
+                            <textarea
+                                id="description"
+                                className="block w-full h-40 px-4 py-2 border border-gray-300 rounded-md resize-none"
+                                value={description}
+                                onChange={(event) => setDescription(event.target.value)}
+                            />
+                        </div>
+                        <div className="form_group">
+                            <label htmlFor="pdfFile">Upload PDF:</label>
+                            <input
+                                type="file"
+                                id="pdfFile"
+                                accept=".pdf"
+                                // onChange={(event) => setPdfFile(event.target.files[0])}
+                            />
+                        </div>
                         <div>
-                            <button className={styles.submit_btn} type="submit">Create Project</button>
+                            <button className={`${styles.submit_btn} mt-2`} type="submit">Create Project</button>
                         </div>
                     </form>
                 </Modal>
