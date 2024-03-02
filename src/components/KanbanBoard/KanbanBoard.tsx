@@ -46,18 +46,18 @@ function KanbanBoard() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Final Space Characters</h1>
+        <h1>Kanban Board</h1>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="characters">
             {(provided) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
+              <div {...provided.droppableProps} {...provided.draggableProps} ref={provided.innerRef}>
                 {characters.map(({id, name, thumb}, index) => {
                   return (
                     <Draggable key={id} draggableId={id} index={index}>
                       {(provided) => (
-                        <div {...provided.draggableProps} ref={provided.innerRef}>
-                          <KanbanItem key={id} />
-                        </div>
+                          <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                            <KanbanItem key={id} />
+                          </div>
                       )}
                     </Draggable>
                   );
