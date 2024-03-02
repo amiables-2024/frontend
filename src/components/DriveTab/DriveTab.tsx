@@ -80,6 +80,7 @@ const DriveTab: React.FC = () => {
 
     const uploadFileToDir = async (e) => {
         e.preventDefault();
+        // Handle file upload logic here
     }
 
     const getProjectFiles = async (e) => {
@@ -94,6 +95,11 @@ const DriveTab: React.FC = () => {
             <div className="flex items-center mb-4">
                 <h1 className="text-xl font-semibold mr-2" onClick={handleRootClick}>Project Files</h1>
                 {currPath.map((i: any) => ` > ${i}`)}
+            </div>
+            {/* File upload area */}
+            <div>
+                <label htmlFor="fileUpload" className="bg-#B39FD2 rounded-xl text-lg px-4 py-2">Upload File</label>
+                <input id="fileUpload" type="file" className="hidden" onChange={uploadFileToDir} />
             </div>
             <div className="flex mb-4">
                 <div className="w-3/5">Name</div>
