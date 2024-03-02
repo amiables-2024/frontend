@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Form.css';
+import axios, { AxiosError } from 'axios';
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -16,9 +17,21 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle the sign-up logic here, e.g., send data to a server
+    try {
+      const response = await axios.post('http://example.com/api/auth/signup', user);
+      console.log('SignUp Success:', response.data);
+      // TODO: Handle success, redirect to personal dashboard page
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('SignUp Error:', error.response?.data);
+        // TODO: Handle error, display some error message detailing what failed
+      } else {
+        // Handle non-Axios errors
+        console.error('SignUp Error:', error);
+      }
+    }
     console.log(user);
   };
 
