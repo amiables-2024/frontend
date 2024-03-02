@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import './assets/css/dragula.css'
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import { ChakraProvider } from '@chakra-ui/react'
 
