@@ -31,7 +31,7 @@ const createMicrophoneIcon = (onLoaded) => {
     });
 };
 
-const OfficeSpace: React.FC = () => {
+const MeetingRoom: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -210,13 +210,9 @@ const OfficeSpace: React.FC = () => {
 
   return (
     <div>
-        <TopBar />
         <div ref={mountRef} className='threejs-container'/ >
-        <Navigation /> 
     </div>
   );
 };
 
-
-
-export default OfficeSpace;
+export default MeetingRoom;

@@ -1,38 +1,60 @@
 .chat_div {
-    height: 100vh;
-    width: 100vw;
+    padding: 20px;
     display: flex;
+    flex-direction: row;
+    gap: 16px;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    height: 100vh; /* Adjusted to match full viewport height */
   }
+  
   .chat_border {
-    border: 1px solid red;
-    padding: 5px;
-  }
-  .chat_input {
-    height: 2rem;
-    width: 15rem;
-    padding: 5px;
-  }
-  .chat_button {
-    height: 2rem;
-  }
-  .chatProfileRight {
     display: flex;
-    align-items: center;
-    gap: 5px;
-    flex-direction: row-reverse;
-    margin-bottom: 5px;
+    flex-direction: column;
+    gap: 20px;
+    flex: 0 0 32%;
+    height: auto; /* Adjusted for dynamic content */
+    padding: 5px;
+    background-color: #E3DCEF;
+    border-radius: 16px;
+    overflow-y: auto;
   }
+  
+  .chat_input {
+    background-color: #E3DCEF;
+    color: #987CC2;
+    padding: 10px 50px;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    box-shadow: rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    text-align: center;
+    height: 2rem; /* Retained original height */
+    width: 15rem; /* Retained original width */
+  }
+  
+  .chat_button {
+    height: 2rem; /* Retained original height */
+    background-color: #E3DCEF;
+    border-radius: 16px;
+    padding: 10px 50px;
+    text-align: center;
+  }
+  
+  .chatProfileRight,
   .chatProfileLeft {
     display: flex;
     align-items: center;
     gap: 5px;
+    background-color: #E3DCEF;
+    padding: 10px 50px;
+    box-shadow: rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
     margin-bottom: 5px;
+    flex-direction: row; /* Adjusted for consistent direction */
   }
+  
   .chatProfileSpan {
-    background-color: rgb(213, 213, 182);
+    background-color: #987CC2;
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
