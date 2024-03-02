@@ -3,6 +3,7 @@ import {useState} from "react";
 import KanbanTab from "../KanbanTab/KanbanTab";
 import DriveTab from "../DriveTab/DriveTab";
 import {Project} from "../../util/types";
+import MeetingRoom from "../MeetingRoom/MeetingRoom";
 
 type TabName = 'Kanban' | 'Files' | 'Meeting' | 'Project Analysis'
 
@@ -42,7 +43,7 @@ export default function ProjectTabs({project}: Props) {
             case "Files":
                 return <DriveTab/>
             case "Meeting":
-                return <></>
+                return <MeetingRoom />
             case "Project Analysis":
                 return <></>
             default:
