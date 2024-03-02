@@ -40,6 +40,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/new-project" element={<CreateProjectPage />} />
+        <Route path="/home-room" element={<MeetingRoom />} />
 {/*        <Route path="/landing" element={
           <ProtectedRoute>
             <Landing />
