@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn';
 import CreateProjectPage from './components/CreateProjectPage/CreateProjectPage';
 import KanbanItem from './components/KanbanItem/KanbanItem';
 import KanbanBoard from './components/KanbanBoard/KanbanBoard';
+import Dashboard from "./components/Dashboard/Dashboard";
 
 // function App() {
 //   return (
@@ -43,6 +44,7 @@ function App() {
         <Routes>
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/new-project" element={<CreateProjectPage />} />
           <Route path="/kanban-board" element={<KanbanBoard />} />
   {/*        <Route path="/landing" element={

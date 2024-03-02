@@ -1,29 +1,35 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
+
 import styles from './SignIn.module.css';
-import axios, {AxiosError} from 'axios';
 import logoImg from "../../assets/images/logo_name.svg";
+import restClient from "../../util/rest.util";
 
 const SignIn = () => {
+    const navigate = useNavigate();
+
     const [error, setError] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`);
-            console.log('SignIn Success:', response.data);
-            // TODO: Handle success, set session token and redirect to personal dashboard page
-            sessionStorage.setItem("accessToken", response.data.token);
-        } catch (error) {
-            if (axios.isAxiosError(error)) {
-                console.error('SignIn Error:', error.response?.data);
-                // TODO: Handle error, display some error message detailing user not found
-            } else {
-                // Handle non-Axios errors
-                console.error('SignIn Error:', error);
+        const request = await restClient.post('/auth/login', {
+            data: {
+                email: email,
+                password: password
             }
+        });
+
+        if (!request.success) {
+            setError(request.data)
+            return
         }
+        console.log(request);
+
+        localStorage.setItem("accessToken", request.data.token);
+        localStorage.setItem("user", JSON.stringify(request.data.user));
+        navigate("/dashboard");
     };
 
     return (
@@ -31,9 +37,9 @@ const SignIn = () => {
             <div className={styles.sign_in_container}>
                 <div className={styles.sign_in_box}>
                     <form onSubmit={handleSubmit} className={styles.sign_in_form}>
-                        <div>
+                        <a href={'/'}>
                             <img src={logoImg} alt={"Sweet"}/>
-                        </div>
+                        </a>
                         <h2 className={styles.sign_in_header}>Sign in to continue to your personal dashboard</h2>
                         {error && <p className={styles.error}>{error}</p>}
                         <div className={styles.form_group}>
