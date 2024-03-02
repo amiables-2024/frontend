@@ -27,7 +27,7 @@ const CreateProjectPage = () => {
 
     e.preventDefault();
     try {
-      const response = await axios.post('/project/SOMETHING', { projectName, collaborators });
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/project/SOMETHING`, { projectName, collaborators });
       console.log('Creating project:', projectName, 'with collaborators:', collaborators);
       // TODO: Handle success, redirect to the project page
     } catch (error) {

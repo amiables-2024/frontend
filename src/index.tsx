@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL
+// axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = "*";
 axios.interceptors.request.use(function (config) {
     const token = localStorage.getItem("session") || ""
