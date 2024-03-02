@@ -11,7 +11,7 @@ export default function Home() {
   const [roomId, setroomId] = useState("");
 
   var socket: any;
-  socket = io(process.env.REACT_APP_BACKEND_URL);
+  socket = io(process.env.REACT_APP_BACKEND_URL!);
 
   const handleJoin = () => {
     if (userName !== "" && roomId !== "") {
