@@ -40,6 +40,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .avatar_group p {
@@ -50,4 +51,26 @@
     height: 48px;
     width: 48px;
     border-radius: 50%;
+}
+
+.create_box {
+    width: 400px;
+    min-height: 400px;
+    padding: 20px 50px;
+    background-color: white;
+    border-radius: 16px;
+}
+
+.create_box h1 {
+    font-size: 2rem;
+    margin: 15px 0;
+}
+
+.submit_btn {
+    padding: 10px 25px;
+    color: white;
+    background-color: #B39FD2;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
 }
