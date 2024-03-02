@@ -19,9 +19,10 @@ const SignIn = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://example.com/api/auth/signin', login);
+      const response = await axios.post('https://URL/auth/login', login);
       console.log('SignIn Success:', response.data);
-      // TODO: Handle success, redirect to personal dashboard page
+      // TODO: Handle success, set session token and redirect to personal dashboard page
+      sessionStorage.setItem("accessToken", response.data.access_token);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('SignIn Error:', error.response?.data);
