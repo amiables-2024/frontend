@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import KanbanItem from '../KanbanItem/KanbanItem';
-import KanbanColumn from './KanbanColumn';
+// import KanbanColumn from './KanbanColumn';
 
 const finalSpaceCharacters = [
   {
@@ -49,9 +49,9 @@ function KanbanBoard() {
       <header className="App-header">
         <h1>Kanban Board</h1>
         <DragDropContext onDragEnd={handleOnDragEnd} className="w-1/3">
-          <KanbanColumn />
-          <KanbanColumn />
-          <KanbanColumn />
+          {/*<KanbanColumn />*/}
+          {/*<KanbanColumn />*/}
+          {/*<KanbanColumn />*/}
         </DragDropContext>
       </header>
     </div>

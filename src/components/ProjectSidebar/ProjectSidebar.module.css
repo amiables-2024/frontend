@@ -1,0 +1,8 @@
+.sidebar_container {
+    flex: 0 0 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #F9F8FC;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}

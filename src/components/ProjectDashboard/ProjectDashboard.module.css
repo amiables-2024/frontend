@@ -1,0 +1,14 @@
+.project_dashboard_page {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.project_dashboard_body {
+    flex: 1 0;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
