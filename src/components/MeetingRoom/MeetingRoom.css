@@ -1,0 +1,8 @@
+.threejs-container {
+    width: 800px; /* Match the width of the renderer */
+    height: 600px; /* Match the height of the renderer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }

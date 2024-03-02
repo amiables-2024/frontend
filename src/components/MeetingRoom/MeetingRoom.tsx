@@ -2,6 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Navigation from '../Navigation/Navigation';
+import TopBar from '../TopBar/TopBar';
+import { text } from 'stream/consumers';
+import './MeetingRoom.css';
   
 const NUM_USERS = 7; 
 
@@ -15,13 +19,28 @@ const modelPaths = [
     '/assets/3d/lolly-7.glb',
 ];
 
+const createMicrophoneIcon = (onLoaded) => {
+    const loader = new GLTFLoader();
+    loader.load('/assets/3d/mic.glb', (gltf) => {
+        const mic = gltf.scene;
+        mic.scale.set(0.175, 0.175, 0.175); // Adjusted scale to a more reasonable size for an icon
+        mic.position.set(0, 1, 0);
+        if (onLoaded) {
+            onLoaded(mic); // Call the callback function with the loaded mic
+        }
+    });
+};
+
 const OfficeSpace: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+
+    let intervalId;
+
     // SCENE 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#f0f0f0');
+    scene.background = new THREE.Color('#ffffff');
 
     // LIGHTING
     const skylight = new THREE.HemisphereLight(0xffffff, 1);
@@ -30,33 +49,37 @@ const OfficeSpace: React.FC = () => {
 
     // RENDERER
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight/2);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current?.appendChild(renderer.domElement);
 
     // CAMERA
     const aspect = window.innerWidth / window.innerHeight;
     const camera = new THREE.PerspectiveCamera(45, aspect, 1, 1000);
-    camera.position.set(10, 10, 10) 
+    camera.position.set(5, 5, 5) 
     camera.lookAt(new THREE.Vector3(0, 0, 0))     
     const controls = new OrbitControls(camera, renderer.domElement);
-    //controls.autoRotate = true;
-    //controls.autoRotateSpeed = 0.1;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.1;
+
+    // FRECKLE 
+    const textureLoader = new THREE.TextureLoader();
+    const freckleTexture = textureLoader.load('/assets/images/freckle.png');
+    const geometry = new THREE.CylinderGeometry(1, 1, 0.25, 32);
+    const material = new THREE.MeshBasicMaterial({ map: freckleTexture });
+    const cylinder = new THREE.Mesh(geometry, material);
+    cylinder.rotateX(Math.PI/2);
+    cylinder.position.set(0, 2, 3);
+    scene.add(cylinder);
 
     // FLOOR 
-    const floorGeometry = new THREE.PlaneGeometry(10, 10);
-    floorGeometry.rotateX(Math.PI/2)
-    const floorMaterial = new THREE.MeshBasicMaterial({ color: '#f7c3a8', side: THREE.DoubleSide });
-    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-    scene.add(floor);
-
-    // TABLE
     const loader = new GLTFLoader();
     loader.load('/assets/3d/table.glb', (gltf) => {
         const table = gltf.scene;
         table.rotation.y = 90 * (Math.PI / 180); 
-        table.scale.set(1.5, 1.5, 1.5);
+        table.scale.set(1.5, 1.5, 1.5);    
         scene.add(table);
     });
+    
     
     const speed = 0.1;
 
@@ -80,14 +103,27 @@ const OfficeSpace: React.FC = () => {
         });
       };
 
+
       loadModels(NUM_USERS, modelPaths, (loadedModels) => {
         const positions = [[-2, -2], [-2, -1], [-2, 0], [-2, 1], [2, -2], [2, -1], [2, 0], [2, 1]];
         loadedModels.forEach((model, index) => {
+            createMicrophoneIcon((mic) => {
+                model.add(mic); 
+                mic.name = `mic${index}`;
+            });
+            const intervalId = setInterval(() => {
+                loadedModels.forEach((model, index) => {
+                    const mic = model.getObjectByName(`mic${index}`);
+                        if (mic) {
+                            mic.visible = Math.random() < 0.5; // Randomly toggle visibility
+                        }
+                    });
+              }, 1000);
             const hue = index / loadedModels.length; // Divide the hue range based on the number of models
             model.traverse((child) => {
                 if (child.isMesh) {
                     const color = new THREE.Color();
-                    color.setHSL(hue, 1, 0.5); // Set color using the calculated hue
+                    color.setHSL(hue, 1, 0.5); 
                     child.material.color = color;
                     child.name = `user${index}`;
                 }
@@ -130,6 +166,15 @@ const OfficeSpace: React.FC = () => {
         raycaster.setFromCamera(mouse, camera);
 
         const intersects = raycaster.intersectObjects(scene.children);
+        
+        setInterval(() => {
+            loadedModels.forEach((model, index) => {
+              const micIcon = model.getObjectByName(`mic${index}`);
+              if (micIcon) {
+                micIcon.visible = Math.random() < 0.5; // Randomly toggle visibility
+              }
+            });
+          }, 1000);
 
         for (let i = 0; i < intersects.length; i++) {
             if (intersects[i].object.name.startsWith('user')) {
@@ -140,8 +185,12 @@ const OfficeSpace: React.FC = () => {
                 break;
                 }
             }
+
+        
+            
         });
     }); 
+
 
     // START RENDER LOOP 
     const animate = () => {
@@ -155,10 +204,19 @@ const OfficeSpace: React.FC = () => {
     // Clean up on unmount
     return () => {
       mountRef.current?.removeChild(renderer.domElement);
+      clearInterval(intervalId); // Clear the interval
     };
   }, []);
 
-  return <div ref={mountRef} />;
+  return (
+    <div>
+        <TopBar />
+        <div ref={mountRef} className='threejs-container'/ >
+        <Navigation /> 
+    </div>
+  );
 };
+
+
 
 export default OfficeSpace;
