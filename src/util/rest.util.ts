@@ -120,7 +120,10 @@ export class RestClient {
             method: options.method,
         }
 
-        config.headers = options.headers;
+        config.headers = options.headers || Object.create(null);
+        const token = localStorage.getItem("accessToken") || ""
+        if (token)
+            config.headers!['Authorization'] = token;
 
         if (options.method == RequestMethod.Post)
             config.data = options.data;
@@ -134,15 +137,6 @@ export class RestClient {
 
 const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_BACKEND_URL
-});
-
-axiosInstance.interceptors.request.use(function (config) {
-    const headers: AxiosHeaders = config.headers || Object.create(null);
-    const token = localStorage.getItem("accessToken") || ""
-    if (token)
-        headers['Authorization'] = token;
-    config.headers = headers;
-    return config;
 });
 
 const restClient = new RestClient(axiosInstance);
