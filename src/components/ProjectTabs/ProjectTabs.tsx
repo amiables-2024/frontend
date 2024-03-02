@@ -1,11 +1,8 @@
 import styles from "./ProjectTabs.module.css";
 import {useState} from "react";
 import KanbanTab from "../KanbanTab/KanbanTab";
-<<<<<<< HEAD
 import DriveTab from "../DriveTab/DriveTab";
-=======
 import {Project} from "../../util/types";
->>>>>>> b7604f5bc03c3489d8e5044f8b39802fa0bd1323
 
 type TabName = 'Kanban' | 'Files' | 'Meeting' | 'Project Analysis'
 
@@ -73,11 +70,7 @@ export default function ProjectTabs({project}: Props) {
                 backgroundColor: TABS.filter((tab) => tab.name === selectedTab)[0].backgroundColor
             }}>
                 <div className={styles.tab_content_wrapper}>
-<<<<<<< HEAD
-                    <DriveTab/>
-=======
                     {getActiveTabComponent()}
->>>>>>> b7604f5bc03c3489d8e5044f8b39802fa0bd1323
                 </div>
             </div>
         </div>

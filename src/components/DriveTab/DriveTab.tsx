@@ -78,6 +78,10 @@ const DriveTab: React.FC = () => {
         setCurrPath([...currPath, entry.name]);
     }
 
+    const uploadFileToDir = async (e) => {
+        e.preventDefault();
+    }
+
     const getProjectFiles = async (e) => {
         e.preventDefault();
         console.log("ATTEMPTING CALL");
@@ -87,7 +91,6 @@ const DriveTab: React.FC = () => {
 
     return (
         <div className="bg-white rounded-xl p-6">
-            <button className="bg-blue" onClick={getProjectFiles}>AAHJSDHAJSHD</button>
             <div className="flex items-center mb-4">
                 <h1 className="text-xl font-semibold mr-2" onClick={handleRootClick}>Project Files</h1>
                 {currPath.map((i: any) => ` > ${i}`)}
