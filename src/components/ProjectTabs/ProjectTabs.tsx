@@ -1,6 +1,7 @@
 import styles from "./ProjectTabs.module.css";
 import {useState} from "react";
 import KanbanTab from "../KanbanTab/KanbanTab";
+import DriveTab from "../DriveTab/DriveTab";
 
 type TabName = 'Kanban' | 'Files' | 'Meeting' | 'Project Analysis'
 
@@ -51,7 +52,7 @@ export default function ProjectTabs() {
                 backgroundColor: TABS.filter((tab) => tab.name === selectedTab)[0].backgroundColor
             }}>
                 <div className={styles.tab_content_wrapper}>
-                    <KanbanTab/>
+                    <DriveTab/>
                 </div>
             </div>
         </div>
