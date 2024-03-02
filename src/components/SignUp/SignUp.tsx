@@ -20,7 +20,7 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://URL/auth/register', user);
+      const response = await axios.post('/auth/register', user);
       console.log('SignUp Success:', response.data);
       // TODO: Handle success, set session token and redirect to personal dashboard page
       sessionStorage.setItem("accessToken", response.data.access_token);  
