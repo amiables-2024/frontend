@@ -10,8 +10,7 @@ export default function Home() {
   const [showSpinner, setShowSpinner] = useState(false);
   const [roomId, setroomId] = useState("");
 
-  var socket: any;
-  socket = io(process.env.REACT_APP_BACKEND_URL!);
+  var socket = io(process.env.REACT_APP_BACKEND_URL!);
 
   const handleJoin = () => {
     if (userName !== "" && roomId !== "") {

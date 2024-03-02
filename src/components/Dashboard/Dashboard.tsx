@@ -39,7 +39,7 @@ export default function Dashboard() {
                         <h1>COMP30024 A1</h1>
                         <p>Progression: 53%</p>
                     </a>
-                    <Link to='/' className={styles.dashboard_project_box}>
+                    <Link to='/project/A1' className={styles.dashboard_project_box}>
                         <h1>COMP30024 A1</h1>
                         <p>Progression: 53%</p>
                     </Link>
