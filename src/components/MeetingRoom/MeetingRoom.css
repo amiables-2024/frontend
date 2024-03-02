@@ -6,3 +6,42 @@
     align-items: center;
     margin: 0 auto;
   }
+
+.threejs-tab {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: center;
+    height: 100%;
+}
+
+.threejs_column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 0 0 32%;
+    height: 100%;
+}
+
+.threejs_name {
+    background-color: #E3DCEF;
+    color: #987CC2;
+    padding: 10px 50px;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    box-shadow: rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    text-align: center;
+}
+
+.threejs_items {
+    flex-grow: 1;
+    /*max-height: 100%;*/
+    /*min-height: 100%;*/
+    height: 200px;
+    background-color: #E3DCEF;
+    border-radius: 16px;
+    overflow-y: auto;
+
+}
