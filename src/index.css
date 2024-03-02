@@ -21,3 +21,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.form_group {
+  display: block;
+  width: 100%;
+}
+
+.form_group input {
+  padding: 10px;
+  width: 100%;
+  background-color: rgba(227, 220, 239, 0.37);
+  border: 3px solid #E3DCEF;
+  border-radius: 8px;
+}
+
+.form_group input:focus {
+  outline: none !important;
+}
+
+.form_group input::placeholder {
+  color: #B39FD2;
+}
+
+.error {
+  color: red;
+}
