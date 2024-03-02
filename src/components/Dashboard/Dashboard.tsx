@@ -27,26 +27,6 @@ export default function Dashboard() {
                 <h1 className={styles.dashboard_header}>Projects</h1>
                 <hr className={styles.dashboard_line}/>
                 <div className={styles.dashboard_projects}>
-                    <a className={styles.dashboard_project_box}>
-                        <h1>UniHack Project</h1>
-                        <p>Progression: 70%</p>
-                    </a>
-                    <a className={styles.dashboard_project_box}>
-                        <h1>COMP30024 A1</h1>
-                        <p>Progression: 53%</p>
-                    </a>
-                    <a className={styles.dashboard_project_box}>
-                        <h1>COMP30024 A1</h1>
-                        <p>Progression: 53%</p>
-                    </a>
-                    <Link to='/project/A1' className={styles.dashboard_project_box}>
-                        <h1>COMP30024 A1</h1>
-                        <p>Progression: 53%</p>
-                    </Link>
-                    <a className={styles.dashboard_project_box}>
-                        <h1>COMP30024 A1</h1>
-                        <p>Progression: 53%</p>
-                    </a>
                     {projects.map((project) =>
                         <Link
                             className={styles.dashboard_project_box}
