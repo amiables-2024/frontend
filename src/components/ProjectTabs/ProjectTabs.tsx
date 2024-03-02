@@ -1,6 +1,7 @@
 import styles from "./ProjectTabs.module.css";
 import {useState} from "react";
 import KanbanTab from "../KanbanTab/KanbanTab";
+import {Project} from "../../util/types";
 
 type TabName = 'Kanban' | 'Files' | 'Meeting' | 'Project Analysis'
 
@@ -28,7 +29,11 @@ const TABS: { name: TabName, backgroundColor: string, textColor: string }[] = [
 
 ]
 
-export default function ProjectTabs() {
+type Props = {
+    project: Project;
+}
+
+export default function ProjectTabs({project}: Props) {
     const [selectedTab, setSelectedTab] = useState<TabName>('Kanban');
 
     return (
@@ -36,7 +41,7 @@ export default function ProjectTabs() {
             <div className={styles.project_tabs_pill_container}>
                 {TABS.map((tab) =>
                     <div
-                        key={`tab_pill_${tab}`}
+                        key={`tab_pill_${tab.name}`}
                         style={{
                             backgroundColor: tab.backgroundColor,
                             color: tab.textColor,
@@ -51,7 +56,7 @@ export default function ProjectTabs() {
                 backgroundColor: TABS.filter((tab) => tab.name === selectedTab)[0].backgroundColor
             }}>
                 <div className={styles.tab_content_wrapper}>
-                    <KanbanTab/>
+                    <KanbanTab project={project}/>
                 </div>
             </div>
         </div>

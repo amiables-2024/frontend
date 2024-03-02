@@ -10,14 +10,27 @@ export type Message = {
     createdAt: Date;
 }
 
+export enum TodoStatusEnum {
+    PENDING = "PENDING",
+    IN_PROGRESS = "IN_PROGRESS",
+    DONE = "DONE"
+}
+
+export enum TodoPriorityEnum {
+    LOW = "LOW",
+    MEDIUM = "MEDIUM",
+    HIGH = "HIGH"
+}
+
+
 export type Todo = {
     id: string;
     title: string;
     description: string;
     createdAt: Date;
     dueDate: Date;
-    status: string;
-    priority: string;
+    status: TodoStatusEnum;
+    priority: TodoPriorityEnum;
     assignee?: User;
 }
 
