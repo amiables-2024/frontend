@@ -1,10 +1,10 @@
 .threejs-container {
-    width: 800px; /* Match the width of the renderer */
-    height: 600px; /* Match the height of the renderer */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%);
   }
 
 .threejs-tab {

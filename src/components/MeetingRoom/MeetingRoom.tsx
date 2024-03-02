@@ -40,7 +40,7 @@ const MeetingRoom: React.FC = () => {
 
     // SCENE 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('#ffffff');
+    scene.background = new THREE.Color('#E3DCEF');
 
     // LIGHTING
     const skylight = new THREE.HemisphereLight(0xffffff, 1);
@@ -49,7 +49,7 @@ const MeetingRoom: React.FC = () => {
 
     // RENDERER
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(800, 500);
     mountRef.current?.appendChild(renderer.domElement);
 
     // CAMERA
@@ -209,9 +209,10 @@ const MeetingRoom: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className='threejs-container'>
         <div ref={mountRef} className='threejs-container'/ >
     </div>
+
   );
 };
 
