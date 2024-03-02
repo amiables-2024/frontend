@@ -17,8 +17,8 @@
     justify-content: center;
 }
 
-.sign_in_box {
-    height: 450px;
+.sign_up_box {
+    min-height: 450px;
     width: 30%;
     background: #F9F8FC;
     border-radius: 16px;
@@ -34,9 +34,11 @@
     padding: 40px 50px;
 }
 
-.sign_in_header {
+.sign_up_header {
     text-align: center;
     margin: 5px 0;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .form_group {
