@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Form.css';
+import axios, { AxiosError } from 'axios';
 
 const SignIn = () => {
   const [login, setLogin] = useState({
@@ -15,10 +16,22 @@ const SignIn = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle the sign-in logic here
-    console.log(login);
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, login);
+      console.log('SignIn Success:', response.data);
+      // TODO: Handle success, set session token and redirect to personal dashboard page
+      sessionStorage.setItem("accessToken", response.data.access_token);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('SignIn Error:', error.response?.data);
+        // TODO: Handle error, display some error message detailing user not found
+      } else {
+        // Handle non-Axios errors
+        console.error('SignIn Error:', error);
+      }
+    }
   };
 
   return (

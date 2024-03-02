@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Form.css';
+import axios, { AxiosError } from 'axios';
 
 const SignUp = () => {
   const [user, setUser] = useState({
-    username: '',
+    name: '',
     email: '',
     password: '',
   });
@@ -16,9 +17,22 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle the sign-up logic here, e.g., send data to a server
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, user);
+      console.log('SignUp Success:', response.data);
+      // TODO: Handle success, set session token and redirect to personal dashboard page
+      sessionStorage.setItem("accessToken", response.data.access_token);  
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('SignUp Error:', error.response?.data);
+        // TODO: Handle error, display some error message detailing what failed
+      } else {
+        // Handle non-Axios errors
+        console.error('SignUp Error:', error);
+      }
+    }
     console.log(user);
   };
 
@@ -27,9 +41,9 @@ const SignUp = () => {
       <h2>Sign Up</h2>
       <input
         type="text"
-        name="username"
-        placeholder="Username"
-        value={user.username}
+        name="name"
+        placeholder="name"
+        value={user.name}
         onChange={handleChange}
       />
       <input
