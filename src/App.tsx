@@ -44,6 +44,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/new-project" element={<CreateProjectPage />} />
+          <Route path="/kanban-board" element={<KanbanBoard />} />
   {/*        <Route path="/landing" element={
             <ProtectedRoute>
               <Landing />
