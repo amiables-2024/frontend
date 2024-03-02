@@ -36,6 +36,19 @@ type Props = {
 export default function ProjectTabs({project}: Props) {
     const [selectedTab, setSelectedTab] = useState<TabName>('Kanban');
 
+    const getActiveTabComponent = () => {
+        switch (selectedTab) {
+            case "Files":
+                return <></>
+            case "Meeting":
+                return <></>
+            case "Project Analysis":
+                return <></>
+            default:
+                return <KanbanTab project={project}/>
+        }
+    }
+
     return (
         <div className={styles.project_tabs_container}>
             <div className={styles.project_tabs_pill_container}>
@@ -56,7 +69,7 @@ export default function ProjectTabs({project}: Props) {
                 backgroundColor: TABS.filter((tab) => tab.name === selectedTab)[0].backgroundColor
             }}>
                 <div className={styles.tab_content_wrapper}>
-                    <KanbanTab project={project}/>
+                    {getActiveTabComponent()}
                 </div>
             </div>
         </div>

@@ -18,11 +18,10 @@ export default function ProjectDashboard() {
         restClient.get(`/projects/${projectId}`)
             .then((response) => {
                 if (!response.success) {
-                    alert("Unable to load this project");
-                    // navigate("/dashboard");
+                    alert("Unable to load that project");
+                    navigate("/dashboard");
                     return
                 }
-
                 setProject(response.data);
             });
 
@@ -34,12 +33,15 @@ export default function ProjectDashboard() {
     return (
         <>
             <div className={styles.project_dashboard_page}>
-                <ProjectDashboardNavbar/>
                 {project ?
-                    <div className={styles.project_dashboard_body}>
-                        <ProjectSidebar/>
-                        <ProjectTabs project={project}/>
-                    </div>
+                    <>
+                        <ProjectDashboardNavbar project={project}/>
+                        <div className={styles.project_dashboard_body}>
+                            <ProjectSidebar/>
+                            <ProjectTabs project={project}/>
+                        </div>
+                    </>
+
                     :
                     <h1>Loading Project</h1>
                 }

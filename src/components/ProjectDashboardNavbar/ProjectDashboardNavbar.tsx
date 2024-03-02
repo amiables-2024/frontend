@@ -8,7 +8,7 @@ import Modal from "../Modal/Modal";
 import restClient from "../../util/rest.util";
 
 type Props = {
-    project?: Project;
+    project: Project;
 }
 
 export default function ProjectDashboardNavbar({project}: Props) {
@@ -30,7 +30,7 @@ export default function ProjectDashboardNavbar({project}: Props) {
                 </div>
                 <div className={styles.navbar_right}>
                     <div className={styles.project_info}>
-                        <h1>Project Name</h1>
+                        <h1>{project.name}</h1>
                         <p>Days till due: 1</p>
                     </div>
                     <div className={styles.avatar_group}>
