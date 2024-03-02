@@ -5,7 +5,7 @@ import {Link, Navigate, useNavigate} from "react-router-dom";
 import {User} from "../../util/types";
 import {useState} from "react";
 import Modal from "../Modal/Modal";
-import restClient from "../../util/rest.util";
+import restClient, {RequestData} from "../../util/rest.util";
 
 export default function DashboardNavbar() {
 
@@ -13,12 +13,12 @@ export default function DashboardNavbar() {
 
     const [showModal, setShowModal] = useState(false);
     const [error, setError] = useState('');
-    const [pdfFile, setPdfFile] = useState(null);
+    const [pdfFile, setPdfFile] = useState<File | null>(null);
     const [dueDate, setDueDate] = useState('');
     const [members, setMembers] = useState<number[]>([]);  // Array of member ids
     const [description, setDescription] = useState('');
     const [name, setName] = useState('');
-    
+
 
     const cachedUser = localStorage.getItem("user");
     if (cachedUser == null)
@@ -29,11 +29,21 @@ export default function DashboardNavbar() {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        const request = await restClient.post('/projects', {
-            data: {
-                name: name
-            }
-        });
+        const requestConfig: RequestData = Object.create(null);
+
+        const formData= new FormData();
+        formData.set('name', name);
+
+        if (pdfFile) {
+            formData.set('spec', pdfFile as Blob);
+        }
+
+        requestConfig.data = formData;
+        requestConfig.headers = {
+            "Content-Type": "multipart/form-data"
+        };
+
+        const request = await restClient.post('/projects', requestConfig);
 
         if (!request.success) {
             setError(request.data)
@@ -104,9 +114,8 @@ export default function DashboardNavbar() {
                             <label htmlFor="pdfFile">Upload PDF:</label>
                             <input
                                 type="file"
-                                id="pdfFile"
-                                accept=".pdf"
-                                // onChange={(event) => setPdfFile(event.target.files[0])}
+                                accept="application/pdf"
+                                onChange={(event) => setPdfFile(event.target.files![0])}
                             />
                         </div>
                         <div>

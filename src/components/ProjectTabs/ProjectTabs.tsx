@@ -1,6 +1,7 @@
 import styles from "./ProjectTabs.module.css";
 import {useState} from "react";
 import KanbanTab from "../KanbanTab/KanbanTab";
+import DriveTab from "../DriveTab/DriveTab";
 import {Project} from "../../util/types";
 import MeetingRoom from "../MeetingRoom/MeetingRoom";
 
@@ -40,7 +41,7 @@ export default function ProjectTabs({project}: Props) {
     const getActiveTabComponent = () => {
         switch (selectedTab) {
             case "Files":
-                return <></>
+                return <DriveTab/>
             case "Meeting":
                 return <MeetingRoom />
             case "Project Analysis":
