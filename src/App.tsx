@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import './assets/css/dragula.css'
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import { ChakraProvider } from '@chakra-ui/react'
+import {ChakraProvider} from '@chakra-ui/react'
 
 import MeetingRoom from './components/MeetingRoom/MeetingRoom';
 import SignUp from './components/SignUp/SignUp';
@@ -16,6 +16,7 @@ import ChatApp from "./components/ChatApp/ChatApp";
 import ProjectDashboard from './components/ProjectDashboard/ProjectDashboard';
 // import Home from './components/Home/Home';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+import IndexPage from "./components/IndexPage/IndexPage";
 // function App() {
 //   return (
 //     <div className="App">
@@ -42,28 +43,20 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 // }
 
 function App() {
-  return (
-    <ChakraProvider>
-      <Router>
-        <Routes>
-          {/*<Route path="/" element={<Home />} />*/}
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/project/:projectId" element={<ProjectDashboard />} />
-          <Route path="/new-project" element={<CreateProjectPage />} />
-          <Route path="/chat-app" element={<ChatApp />} />
-          <Route path="/meeting-room" element={<MeetingRoom />} />
-          <Route path="*" element={<ErrorPage />} />
-  {/*        <Route path="/landing" element={
-            <ProtectedRoute>
-              <Landing />
-            </ProtectedRoute>
-          } />*/}
-        </Routes>
-      </Router>
-    </ChakraProvider>
-  )
+    return (
+        <ChakraProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<IndexPage/>}/>
+                    <Route path="/sign-up" element={<SignUp/>}/>
+                    <Route path="/sign-in" element={<SignIn/>}/>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path="/project/:projectId" element={<ProjectDashboard/>}/>
+                    <Route path="*" element={<ErrorPage/>}/>
+                </Routes>
+            </Router>
+        </ChakraProvider>
+    )
 }
 
 export default App;
