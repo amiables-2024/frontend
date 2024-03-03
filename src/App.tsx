@@ -15,6 +15,8 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import ChatApp from "./components/ChatApp/ChatApp";
 import ProjectDashboard from './components/ProjectDashboard/ProjectDashboard';
 
+import TeamChat from './components/TeamChat/TeamChat';
+
 // function App() {
 //   return (
 //     <div className="App">
@@ -52,6 +54,7 @@ function App() {
           <Route path="/new-project" element={<CreateProjectPage />} />
           <Route path="/chat-app" element={<ChatApp />} />
           <Route path="/meeting-room" element={<MeetingRoom />} />
+          <Route path="/team-chat" element={<TeamChat />} />
   {/*        <Route path="/landing" element={
             <ProtectedRoute>
               <Landing />
