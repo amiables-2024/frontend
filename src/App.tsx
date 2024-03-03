@@ -14,9 +14,7 @@ import CreateProjectPage from './components/CreateProjectPage/CreateProjectPage'
 import Dashboard from "./components/Dashboard/Dashboard";
 import ChatApp from "./components/ChatApp/ChatApp";
 import ProjectDashboard from './components/ProjectDashboard/ProjectDashboard';
-
-import TeamChat from './components/TeamChat/TeamChat';
-
+import Home from './components/Home/Home';
 // function App() {
 //   return (
 //     <div className="App">
@@ -47,6 +45,7 @@ function App() {
     <ChakraProvider>
       <Router>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -54,7 +53,6 @@ function App() {
           <Route path="/new-project" element={<CreateProjectPage />} />
           <Route path="/chat-app" element={<ChatApp />} />
           <Route path="/meeting-room" element={<MeetingRoom />} />
-          <Route path="/team-chat" element={<TeamChat />} />
   {/*        <Route path="/landing" element={
             <ProtectedRoute>
               <Landing />
