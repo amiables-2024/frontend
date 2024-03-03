@@ -6,6 +6,34 @@ import {User} from "../../util/types";
 import {useState} from "react";
 import Modal from "../Modal/Modal";
 import restClient, {RequestData} from "../../util/rest.util";
+import AsyncSelect from 'react-select/async';
+
+const MemberSearch = () => {
+
+  const loadOptions = async (inputValue: string) => {
+    const request = await restClient.get("/users/search", {
+      data: {
+        query: inputValue
+      }
+    });
+    console.log(inputValue);
+    console.log(request);
+
+    if (!request.success) {
+      return
+    }
+    
+    return request.data;
+  };
+
+  return (<AsyncSelect
+    isMulti
+    cacheOptions
+    defaultOptions
+    loadOptions={loadOptions}
+  />);
+}
+
 
 export default function DashboardNavbar() {
 
@@ -98,8 +126,7 @@ export default function DashboardNavbar() {
                             />
                         </div>
                         <div className="form_group">
-                            {/* Member invitation section */}
-                            {/* You can implement this part using debouncing for API calls */}
+                            <MemberSearch />
                         </div>
                         <div className="form_group">
                             <label htmlFor="description">Description:</label>
