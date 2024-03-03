@@ -2,6 +2,7 @@ import styles from "./ProjectTabs.module.css";
 import {useState} from "react";
 import KanbanTab from "../KanbanTab/KanbanTab";
 import DriveTab from "../DriveTab/DriveTab";
+import MetricsTab from "../MetricsTab/MetricsTab";
 import {Project} from "../../util/types";
 import MeetingRoom from "../MeetingRoom/MeetingRoom";
 
@@ -45,9 +46,9 @@ export default function ProjectTabs({project}: Props) {
             case "Workspace":
                 return <MeetingRoom />
             case "Project Analysis":
-                return <></>
+                return <MetricsTab project={project} />
             default:
-                return <KanbanTab project={project}/>
+                return <KanbanTab project={project} />
         }
     }
 
