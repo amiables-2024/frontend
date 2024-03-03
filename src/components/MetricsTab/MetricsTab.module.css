@@ -1,0 +1,11 @@
+.metrics_tab {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.metrics_tab img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
