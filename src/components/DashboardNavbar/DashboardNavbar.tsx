@@ -128,16 +128,6 @@ export default function DashboardNavbar() {
                         </div>
                         <div className="form_group">
                             <MemberSearch />
-                            <h2>Project Members (Optional)</h2>
-                            <input
-                                placeholder={"Member email(s)"}
-                                value={name}
-                                onChange={(event) => setName(event.target.value)}
-                            />
-                        </div>
-                        <div className="form_group">
-                            {/* Member invitation section */}
-                            {/* You can implement this part using debouncing for API calls */}
                         </div>
                         <div className="form_group">
                             <label htmlFor="description">Description:</label>
