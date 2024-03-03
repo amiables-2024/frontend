@@ -127,6 +127,7 @@ export default function DashboardNavbar() {
                             />
                         </div>
                         <div className="form_group">
+                            <label htmlFor="memberSearch">Invite members (optional):</label>
                             <MemberSearch />
                         </div>
                         <div className="form_group">
