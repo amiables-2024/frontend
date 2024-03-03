@@ -92,7 +92,7 @@ const DriveTab: React.FC = () => {
 
     return (
         <div className="bg-white rounded-xl p-6">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-4 text-black">
                 <h1 className="text-xl font-semibold mr-2" onClick={handleRootClick}>Project Files</h1>
                 {currPath.map((i: any) => ` > ${i}`)}
             </div>
@@ -101,13 +101,13 @@ const DriveTab: React.FC = () => {
                 <label htmlFor="fileUpload" className="bg-#B39FD2 rounded-xl text-lg px-4 py-2">Upload File</label>
                 <input id="fileUpload" type="file" className="hidden" onChange={uploadFileToDir} />
             </div>
-            <div className="flex mb-4">
+            <div className="flex mb-4 text-black pt-3">
                 <div className="w-3/5">Name</div>
                 <div className="w-2/6">Owner</div>
                 <div className="w-1/5">Last Modified</div>
             </div>
             <div className="border-b border-gray-200 mb-4" />
-            <div className="flex flex-col">
+            <div className="flex flex-col text-black">
                 {currDirectory.map((entry: any, index: number) => (
                     <React.Fragment key={index}>
                         <div className="flex items-center mb-2">
