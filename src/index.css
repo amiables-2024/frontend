@@ -27,7 +27,7 @@ code {
   width: 100%;
 }
 
-.form_group input {
+.form_group input, .form_group textarea {
   padding: 10px;
   width: 100%;
   background-color: rgba(227, 220, 239, 0.37);
@@ -35,11 +35,11 @@ code {
   border-radius: 8px;
 }
 
-.form_group input:focus {
+.form_group input:focus, .form_group textarea {
   outline: none !important;
 }
 
-.form_group input::placeholder {
+.form_group input::placeholder, .form_group textarea::placeholder {
   color: #B39FD2;
 }
 
