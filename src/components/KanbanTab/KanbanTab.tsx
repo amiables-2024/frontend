@@ -66,8 +66,9 @@ export default function KanbanTab({project}: Props) {
             .on("drop", async (element, target) => {
                 const todoId: string = element.id;
                 const targetStatus: string = target.id || "";
+
                 let newStatus: TodoStatusEnum;
-                switch (targetStatus.toLowerCase()) {
+                switch (targetStatus) {
                     case "progressItems":
                         newStatus = TodoStatusEnum.IN_PROGRESS;
                         break
@@ -85,12 +86,12 @@ export default function KanbanTab({project}: Props) {
                     }
                 });
 
+
                 if (!request.success) {
                     toast.error("Unable to update your todo status");
                     return
                 }
 
-                updateTodos();
                 toast.success("Successfully updated your todo status");
             })
     }, [])
