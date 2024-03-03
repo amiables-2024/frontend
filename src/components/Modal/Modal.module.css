@@ -18,4 +18,5 @@
     font-size: 3rem;
     cursor: pointer;
     color: white;
+    z-index: 100;
 }
