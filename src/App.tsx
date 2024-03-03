@@ -14,8 +14,8 @@ import CreateProjectPage from './components/CreateProjectPage/CreateProjectPage'
 import Dashboard from "./components/Dashboard/Dashboard";
 import ChatApp from "./components/ChatApp/ChatApp";
 import ProjectDashboard from './components/ProjectDashboard/ProjectDashboard';
-import Home from './components/Home/Home';
 import ErrorPage from './components/ErrorPage/ErrorPage';
+
 // function App() {
 //   return (
 //     <div className="App">
@@ -46,7 +46,6 @@ function App() {
     <ChakraProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
