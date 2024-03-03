@@ -210,7 +210,7 @@ const MeetingRoom: React.FC = () => {
 
     return (
         <div className="meeting_room_page">
-            <h1 className="meetingroom_title">Meeting Room</h1>
+            <h1 className="meetingroom_title">Virtual Workspace</h1>
             <div className='meetingroom_container'>
                 <div
                     className="bg-white border-2 border-gray-300 rounded-xl flex flex-col content-start p-2 w-full px-5 cursor-grab">

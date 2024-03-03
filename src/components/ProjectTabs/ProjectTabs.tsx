@@ -5,7 +5,7 @@ import DriveTab from "../DriveTab/DriveTab";
 import {Project} from "../../util/types";
 import MeetingRoom from "../MeetingRoom/MeetingRoom";
 
-type TabName = 'Kanban' | 'Files' | 'Meeting' | 'Project Analysis'
+type TabName = 'Kanban' | 'Files' | 'Workspace' | 'Project Analysis'
 
 const TABS: { name: TabName, backgroundColor: string, textColor: string }[] = [
     {
@@ -19,7 +19,7 @@ const TABS: { name: TabName, backgroundColor: string, textColor: string }[] = [
         textColor: "#E3DCEF",
     },
     {
-        name: "Meeting",
+        name: "Workspace",
         backgroundColor: "#96BBF2",
         textColor: "#4454DF",
     },
@@ -42,7 +42,7 @@ export default function ProjectTabs({project}: Props) {
         switch (selectedTab) {
             case "Files":
                 return <DriveTab/>
-            case "Meeting":
+            case "Workspace":
                 return <MeetingRoom />
             case "Project Analysis":
                 return <></>
