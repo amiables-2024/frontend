@@ -86,7 +86,6 @@ export default function KanbanTab({project}: Props) {
                     }
                 });
 
-
                 if (!request.success) {
                     toast.error("Unable to update your todo status");
                     return
