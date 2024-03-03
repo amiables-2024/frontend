@@ -2,8 +2,9 @@ import styles from "./ProjectSidebar.module.css"
 import {Message, Project, User} from "../../util/types";
 import {useEffect, useMemo, useState} from "react";
 import {io} from "socket.io-client";
-import {Navigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import restClient from "../../util/rest.util";
+import {getAvatarUrl} from "../../util/misc.util";
 
 type Props = {
     project: Project;
@@ -59,12 +60,39 @@ export default function ProjectSidebar() {
 
     return (
         <div className={styles.sidebar_container}>
-            {messages.map((message, index) =>
-                <div key={`message_id_${index}`}>
-                    <p>{message.user.name}:</p>
-                    <pre>{message.content}</pre>
+            <div className={styles.sidebar_messages_container}>
+                {messages.map((message, index) =>
+                    <div
+                        key={`message_id_${index}`}
+                        className={`${styles.chat_message}`}
+                        style={message.user.id === user.id ?
+                            {
+                                alignSelf: "flex-end",
+                                backgroundColor: "#747474"
+                        } :
+                            {
+                                alignSelf: "flex-start",
+                                backgroundColor: "#987CC2"
+                            }}
+                    >
+                        <div className={styles.chat_avatar_group}>
+                            <img src={getAvatarUrl(message.user.id)} alt={`${user.name}'s Avatar`}/>
+                            <h1>{message.user.name}</h1>
+                        </div>
+                        <pre>{message.content}</pre>
+                    </div>
+                )}
+            </div>
+            <form className={styles.sidebar_input_container} onSubmit={sendMessage}>
+                <div className="form_group">
+                    <input
+                        placeholder={"Send message"}
+                        value={messageContent}
+                        onChange={(event) => setMessageContent(event.target.value)}
+                    />
                 </div>
-            )}
+                <input type="submit" style={{visibility: "hidden", position: "absolute"}}/>
+            </form>
         </div>
     )
 }

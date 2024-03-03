@@ -107,16 +107,17 @@ export default function DashboardNavbar() {
             {showModal &&
                 <Modal closeModal={() => setShowModal(false)}>
                     <form className={styles.create_box} onSubmit={handleSubmit}>
-                        <h1>Create Project</h1>
+                        <h1>Let’s get your project started!</h1>
                         {error && <p className="error">{error}</p>}
                         <div className="form_group">
+                            <h2>Project Name:</h2>
                             <input
                                 placeholder={"Enter a project name"}
                                 value={name}
                                 onChange={(event) => setName(event.target.value)}
                             />
                         </div>
-                        <div className="form_group">
+                        <div className="form_group"> {/* move this input box to beside the project name box  */}
                             <label htmlFor="dueDate">Due Date:</label>
                             <input
                                 type="date"
@@ -127,10 +128,21 @@ export default function DashboardNavbar() {
                         </div>
                         <div className="form_group">
                             <MemberSearch />
+                            <h2>Project Members (Optional)</h2>
+                            <input
+                                placeholder={"Member email(s)"}
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}
+                            />
+                        </div>
+                        <div className="form_group">
+                            {/* Member invitation section */}
+                            {/* You can implement this part using debouncing for API calls */}
                         </div>
                         <div className="form_group">
                             <label htmlFor="description">Description:</label>
                             <textarea
+                                placeholder={"Give Freckle the details of your project."}
                                 id="description"
                                 className="block w-full h-40 px-4 py-2 border border-gray-300 rounded-md resize-none"
                                 value={description}
@@ -138,15 +150,18 @@ export default function DashboardNavbar() {
                             />
                         </div>
                         <div className="form_group">
-                            <label htmlFor="pdfFile">Upload PDF:</label>
-                            <input
-                                type="file"
-                                accept="application/pdf"
-                                onChange={(event) => setPdfFile(event.target.files![0])}
-                            />
+                            <label htmlFor="pdfFile">File (Optional)</label>
+                            <div className={styles.fileDescription}>
+                                <input
+                                    type="file"
+                                    accept=".pdf, .docx, .txt"
+                                    onChange={(event) => setPdfFile(event.target.files![0])}
+                                />
+                                <span className={styles.fileTypes}>.pdf, .docx, .txt</span>
+                            </div>
                         </div>
                         <div>
-                            <button className={`${styles.submit_btn} mt-2`} type="submit">Create Project</button>
+                            <button className={`${styles.submit_btn} mt-2`} type="submit">Create Project</button>                            
                         </div>
                     </form>
                 </Modal>

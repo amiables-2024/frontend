@@ -1,8 +1,67 @@
 .sidebar_container {
     flex: 0 0 30%;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
     background-color: #F9F8FC;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
+
+.sidebar_messages_container {
+    flex: 1 1 1px;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chat_message {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 16px;
+    padding: 16px;
+    word-break: break-all;
+    line-break: anywhere;
+    color: white;
+    width: 80%;
+}
+
+.chat_message pre {
+    line-break: anywhere;
+    word-break: break-all;
+    font-weight: lighter;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.chat_avatar_group {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.chat_avatar_group img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.chat_avatar_group h1 {
+    font-weight: bolder;
+}
+
+.sidebar_input_container {
+    padding: 10px;
+    position: relative;
+}
+
