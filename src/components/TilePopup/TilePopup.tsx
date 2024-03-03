@@ -19,6 +19,10 @@ const TilePopup = ({todo, onClose}: Props) => {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        if (todo.description === desc) {
+            onClose();
+            return
+        }
 
         const request = await restClient.patch(`/projects/${projectId}/todos/${todo.id}`, {
             data: {
@@ -57,7 +61,7 @@ const TilePopup = ({todo, onClose}: Props) => {
                     className="bg-blue-500 text-white px-4 py-2 rounded"
                     type="submit"
                 >
-                    Save
+                    {todo.description == desc ? "Close" : "Save"}
                 </button>
             </form>
         </div>
