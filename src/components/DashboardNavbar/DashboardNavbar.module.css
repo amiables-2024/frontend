@@ -54,11 +54,12 @@
 }
 
 .create_box {
-    width: 400px;
-    min-height: 400px;
+    width: 996px;
+    min-height: 700px;
     padding: 20px 50px;
     background-color: white;
-    border-radius: 16px;
+    border-radius: 15px;
+    flex-shrink: 0;
 }
 
 .create_box h1 {
@@ -74,3 +75,20 @@
     cursor: pointer;
     border-radius: 8px;
 }
+
+.form_group {
+    display: flex;
+    align-items: center;
+}
+
+.fileDescription {
+    display: flex;
+    align-items: align-items;
+}
+
+.fileTypes {
+    color: #B39FD2; 
+    margin-left: 10px;
+    display: inline-block;  
+}
+
