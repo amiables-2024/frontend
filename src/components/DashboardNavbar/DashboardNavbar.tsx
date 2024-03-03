@@ -8,30 +8,41 @@ import Modal from "../Modal/Modal";
 import restClient, {RequestData} from "../../util/rest.util";
 import AsyncSelect from 'react-select/async';
 
-const MemberSearch = () => {
+type MemberSearchProps = {
+    onChange: (value: any) => void;
+}
 
-  const loadOptions = async (inputValue: string) => {
-    const request = await restClient.get("/users/search", {
-      data: {
-        query: inputValue
-      }
-    });
-    console.log(inputValue);
-    console.log(request);
+const MemberSearch = ({onChange}: MemberSearchProps) => {
 
-    if (!request.success) {
-      return
-    }
-    
-    return request.data;
-  };
+    const loadOptions = async (inputValue: string) => {
+        const request = await restClient.get("/users/search", {
+            data: {
+                query: inputValue
+            }
+        });
 
-  return (<AsyncSelect
-    isMulti
-    cacheOptions
-    defaultOptions
-    loadOptions={loadOptions}
-  />);
+        if (!request.success) {
+            return
+        }
+
+        const users: User[] = request.data;
+
+        const options = users.map((user) => ({
+            value: user.id,
+            label: user.name
+        }))
+        return (options as any);
+    };
+
+    return (
+        <AsyncSelect
+            isMulti
+            cacheOptions
+            defaultOptions
+            loadOptions={loadOptions}
+            onChange={onChange}
+        />
+    );
 }
 
 
@@ -43,7 +54,7 @@ export default function DashboardNavbar() {
     const [error, setError] = useState('');
     const [pdfFile, setPdfFile] = useState<File | null>(null);
     const [dueDate, setDueDate] = useState('');
-    const [members, setMembers] = useState<number[]>([]);  // Array of member ids
+    const [members, setMembers] = useState<{ label: string, value:string }[]>([]);  // Array of member ids
     const [description, setDescription] = useState('');
     const [name, setName] = useState('');
 
@@ -59,8 +70,10 @@ export default function DashboardNavbar() {
 
         const requestConfig: RequestData = Object.create(null);
 
-        const formData= new FormData();
+        const formData = new FormData();
+
         formData.set('name', name);
+        formData.set('members', members.map((member) => member.value).join(";"));
 
         if (pdfFile) {
             formData.set('spec', pdfFile as Blob);
@@ -128,7 +141,7 @@ export default function DashboardNavbar() {
                         </div>
                         <div className="form_group">
                             <label htmlFor="memberSearch">Invite members (optional):</label>
-                            <MemberSearch />
+                            <MemberSearch onChange={(value) => setMembers(value)}/>
                         </div>
                         <div className="form_group">
                             <label htmlFor="description">Description:</label>
@@ -152,7 +165,7 @@ export default function DashboardNavbar() {
                             </div>
                         </div>
                         <div>
-                            <button className={`${styles.submit_btn} mt-2`} type="submit">Create Project</button>                            
+                            <button className={`${styles.submit_btn} mt-2`} type="submit">Create Project</button>
                         </div>
                     </form>
                 </Modal>
